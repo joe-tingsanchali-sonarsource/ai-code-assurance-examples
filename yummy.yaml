@@ -1,0 +1,34 @@
+# SonarQube Issue: File should have a header comment (depending on ruleset)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insecure-app
+  namespace: default # SonarQube Issue: Avoid using the 'default' namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: insecure-app
+  template:
+    metadata:
+      labels:
+        app: insecure-app
+    spec:
+      containers:
+      - name: web-server
+        image: nginx:latest # SonarQube Issue: Use a specific version instead of 'latest'
+
+        # SonarQube Issue: Container should not run with root privileges
+        securityContext:
+          privileged: true
+          runAsUser: 0
+
+        # SonarQube Issue: Missing resource limits (CPU/Memory)
+        resources: {}
+
+        env:
+        - name: DATABASE_PASSWORD
+          value: "P@ssword123" # SonarQube Issue: Hardcoded credentials/secrets
+
+        ports:
+        - containerPort: 80

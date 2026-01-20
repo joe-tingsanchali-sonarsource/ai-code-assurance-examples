@@ -13,9 +13,11 @@ rainbow.forEach((color) => {
   console.log(color);
 });
 
+const crypto = require('crypto');
+
 // generate a function that returns a random number between 1 and 10
 function randomNum() {
-  return Math.floor(Math.random() * 10) + 1;
+  return crypto.randomInt(1, 11); // Returns a cryptographically secure random integer in [1, 11)
 }
 
 
