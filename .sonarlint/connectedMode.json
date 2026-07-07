@@ -1,0 +1,4 @@
+{
+    "sonarQubeUri": "http://localhost:2560",
+    "projectKey": "ai-code-assurance-local"
+}
