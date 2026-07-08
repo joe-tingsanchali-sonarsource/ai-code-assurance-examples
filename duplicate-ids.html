@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- Rule: web:S7930 - HTML elements should have unique "id" attribute values -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Duplicate IDs Example</title>
+</head>
+<body>
+  <h1 id="page-title">Customer Details</h1>
+
+  <!-- Noncompliant: "customer-name" id is reused further down the page (web:S7930) -->
+  <label for="customer-name">Name</label>
+  <input type="text" id="customer-name" name="name" />
+
+  <div class="section">
+    <label for="customer-name">Preferred name</label>
+    <!-- Noncompliant: duplicate of the "customer-name" id used above (web:S7930) -->
+    <input type="text" id="customer-name" name="preferredName" />
+  </div>
+
+  <!-- Noncompliant: "submit-button" id duplicated across two separate buttons (web:S7930) -->
+  <button id="submit-button" type="submit">Save</button>
+  <button id="submit-button" type="button" onclick="alert('Saved')">Save (mobile)</button>
+
+  <!-- Compliant: each id below is unique -->
+  <label for="customer-email">Email</label>
+  <input type="text" id="customer-email" name="email" />
+</body>
+</html>
