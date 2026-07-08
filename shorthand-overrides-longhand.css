@@ -1,0 +1,32 @@
+/* Rule: css:S4657 - Shorthand properties should not be used after a related longhand property
+ *
+ * A shorthand property (e.g. "padding") defined after a related longhand property
+ * (e.g. "padding-left") completely overrides the longhand value, making it useless.
+ * The longhand should either come after the shorthand, or be removed entirely.
+ */
+
+.card {
+  padding-left: 10px;
+  padding: 20px; /* Noncompliant: overrides padding-left above, making it useless (css:S4657) */
+}
+
+.button {
+  border-top: 2px solid red;
+  border: 1px solid black; /* Noncompliant: overrides border-top above (css:S4657) */
+}
+
+.banner {
+  background-color: blue;
+  background: url("bg.png") no-repeat; /* Noncompliant: overrides background-color above (css:S4657) */
+}
+
+.text {
+  font-weight: bold;
+  font: 14px/1.5 sans-serif; /* Noncompliant: overrides font-weight above (css:S4657) */
+}
+
+/* --- Compliant alternative for comparison --- */
+.card-fixed {
+  padding: 20px; /* Compliant: shorthand first, defining the general behavior */
+  padding-left: 10px; /* Compliant: longhand after, refining just the left side */
+}
